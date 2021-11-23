@@ -1,0 +1,3 @@
+void a(int x,void y,int z[],void w[]){
+    
+}

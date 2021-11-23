@@ -1,0 +1,5 @@
+/* Var Declaration Test */
+int a;
+void b;
+int c[5];
+void d[10];
