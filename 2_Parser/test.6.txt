@@ -1,0 +1,11 @@
+/* Semantic Error Example */
+/* (1) void-type variable a, b
+ * (2) uninitialized variable c (and b)
+ * (3) undefined variable d */
+
+int main ( void a[] )
+{
+    void b;
+    int c;
+    d[1] = b + c;
+}

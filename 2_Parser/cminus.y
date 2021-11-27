@@ -26,6 +26,13 @@ static int yylex(void); // added 11/2/11 to ensure no conflict with lex
 %token ASSIGN EQ NE LT LE GT GE PLUS MINUS TIMES OVER LPAREN RPAREN LBRACE RBRACE LCURLY RCURLY SEMI COMMA
 %token ERROR 
 
+%right ASSIGN
+%nonassoc EQ NE LT LE GT GE
+%left PLUS MINUS
+%left TIMES OVER
+%nonassoc REDUCE
+%nonassoc ELSE
+
 %% /* Grammar for C-MINUS */
 
 program             : declaration_list
@@ -161,7 +168,7 @@ statement           : expression_stmt { $$ = $1; }
 expression_stmt     : expression SEMI { $$ = $1; }
                     | SEMI { $$ = NULL; }
                     ;
-selection_stmt      : IF LPAREN expression RPAREN statement 
+selection_stmt      : IF LPAREN expression RPAREN statement %prec REDUCE
                          { $$ = newStmtNode(IfK);
                            $$->child[0] = $3;
                            $$->child[1] = $5;
